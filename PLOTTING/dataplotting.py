@@ -10,3 +10,6 @@ def plot_means(data, signals):
     plt.legend(loc="best")
     plt.grid(True)
     plt.show()
+
+def plot_performance(eval):
+    plt.plot(eval['total_value'])
