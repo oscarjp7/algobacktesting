@@ -2,6 +2,7 @@ from DATAPREP.dataretrieval import get_historical_data
 from DATAPREP.database import load_data_sql, retrieve_close_data
 from DATAPREP.find_signal import moving_average
 from DATAPREP.eval import evaluate_strat
+from PLOTTING.dataplotting import plot_means
 
 # Get historical data for stock over given period
 print('Getting data')
@@ -22,9 +23,13 @@ df = retrieve_close_data('aapl')
 print('Done')
 
 # Get moving average signals
-test = moving_average(df, 10, 20)
-print(test)
+print('Getting moving average signals')
+ma_signals = moving_average(df, 10, 20)
+print('Done')
 
-eval = evaluate_strat(df, test, 100)
+# Evaluating strategy
+print('Evaluating signals')
+eval = evaluate_strat(df, ma_signals, 100)
+print('Done')
 
-eval.to_csv('eval_score.csv')
+plot_means(df, ma_signals)
