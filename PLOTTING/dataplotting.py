@@ -11,5 +11,12 @@ def plot_means(data, signals):
     plt.grid(True)
     plt.show()
 
-def plot_performance(eval):
-    plt.plot(eval['total_value'])
+def plot_performance(eval, data, init_capital):
+    normalised_close = data['Close'] / data['Close'].iloc[0] * init_capital
+    plt.plot(eval['total_value'], label = 'Portfolio Value')
+    plt.plot(normalised_close, label = 'Adjusted Stock Price')
+    plt.title('Strategy Performance')
+    plt.xlabel('Date')
+    plt.ylabel('Price')
+    plt.legend(loc='best')
+    plt.show()
