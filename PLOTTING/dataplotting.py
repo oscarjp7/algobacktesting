@@ -1,15 +1,27 @@
 import matplotlib.pyplot as plt
 
 def plot_means(data, signals):
-    plt.plot(data['Close'], label = 'Close Price', color = 'blue')
-    plt.plot(signals['short_mavg'], label = 'Short Moving Average', color = 'red')
-    plt.plot(signals['long_mavg'], label = 'Long Moving Average', color = 'green')
-    plt.title('Stock Price and Moving Averages')
-    plt.xlabel('Date')
-    plt.ylabel('Price')
-    plt.legend(loc="best")
-    plt.grid(True)
-    plt.show()
+    if 'med_ema' in signals:
+        plt.plot(data['Close'], label = 'Close Price', color = 'black')
+        plt.plot(signals['short_ema'], label = 'Short Exponential Moving Average', color = 'red')
+        plt.plot(signals['med_ema'], label = 'Medium Exponential Moving Average', color = 'blue')
+        plt.plot(signals['long_ema'], label = 'Long Exponential Moving Average', color = 'green')
+        plt.title('Stock Price and Exponential Moving Averages')
+        plt.xlabel('Date')
+        plt.ylabel('Price')
+        plt.legend(loc="best")
+        plt.grid(True)
+        plt.show()
+    else:
+        plt.plot(data['Close'], label = 'Close Price', color = 'blue')
+        plt.plot(signals['short_mavg'], label = 'Short Moving Average', color = 'red')
+        plt.plot(signals['long_mavg'], label = 'Long Moving Average', color = 'green')
+        plt.title('Stock Price and Moving Averages')
+        plt.xlabel('Date')
+        plt.ylabel('Price')
+        plt.legend(loc="best")
+        plt.grid(True)
+        plt.show()
 
 def plot_performance(eval, data, init_capital):
     normalised_close = data['Close'] / data['Close'].iloc[0] * init_capital
