@@ -5,7 +5,7 @@ from DATAPREP.eval import evaluate_strat
 from PLOTTING.dataplotting import plot_means, plot_performance
 
 # Choose variables
-stock = input('Ticker Name:')
+stock = input('Ticker Name: ')
 init_capital = 100
 
 # Get historical data for stock over given period
